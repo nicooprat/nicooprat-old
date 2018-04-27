@@ -1,6 +1,8 @@
 <template>
   <article class="container section">
-    <h3 class="title">Hello <span>!</span></h3>
+    <heading title="Hello">
+      <span slot="icon">!</span>
+    </heading>
     <p>Je m’appelle Nico Prat et suis <small>animateur radio sur Le Mouv’</small> designer &amp; développeur front-end à Lyon.</p>
     <p>Je conçois et donne vie à l’interface d’applications et sites internet. Je suis passionné par l’expérience utilisateur, l’intéraction homme-machine, le webdesign et le code : en gros, le web !</p>
     <p>J’ai été webdesigner pendant 5 ans à <a href="http://www.mezcalito.fr/">Mezcalito</a>, agence web Grenobloise, où j’ai pu travailler avec des clients tels que Sport 2000, Go Sport, Twinner, Intersport, Sataski, Serre Chevalier, et bien d’autres.</p>
@@ -19,7 +21,7 @@
 
     span {
       display: inline-block;
-      transform: skew(-10deg) translateX(-.35em) scale(1.65);
+      transform: skew(-10deg) translateX(-.15em) scale(1.65);
       opacity: .125;
     }
   }
@@ -30,3 +32,13 @@
     opacity: .25;
   }
 </style>
+
+<script>
+  import heading from '~/components/heading.vue'
+
+  export default {
+    components: {
+      heading,
+    },
+  }
+</script>

@@ -38,7 +38,7 @@
     font-size: 3em;
     font-weight: 900;
     font-family: 'Arvo';
-    letter-spacing: -.065em;
+    letter-spacing: -.075em;
     line-height: 1;
 
     span {
