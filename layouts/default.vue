@@ -11,7 +11,7 @@
     box-sizing: border-box;
   }
 
-  :root {
+  html {
     --link: hsl(213, 84%, 52%);
     --color: hsl(213, 35%, 40%);
     --gutter: 20px;
@@ -41,6 +41,11 @@
     }
   }
 
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   .container {
     padding-left: calc(50vw - 25rem);
     padding-right: calc(50vw - 25rem);
@@ -51,5 +56,10 @@
   .section {
     padding-top: 10vh;
     padding-bottom: 10vh;
+  }
+
+  .title {
+    font-weight: 900;
+    font-size: 2.5em;
   }
 </style>
