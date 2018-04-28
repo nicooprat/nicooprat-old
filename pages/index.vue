@@ -4,6 +4,7 @@
     <intro/>
     <medium :articles="medium"/>
     <codepen :pens="codepen"/>
+    <twitter :tweets="twitter"/>
   </main>
 </template>
 
@@ -14,6 +15,7 @@
   import intro from '~/components/intro.vue'
   import medium from '~/components/medium.vue'
   import codepen from '~/components/codepen.vue'
+  import twitter from '~/components/twitter.vue'
 
   export default {
     components: {
@@ -21,21 +23,25 @@
       intro,
       medium,
       codepen,
+      twitter,
     },
 
     data() {
       return {
         medium: [],
         codepen: [],
+        twitter: [],
       }
     },
 
     async asyncData({params, error}) {
       const medium = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/4jqjYdusZaPwu9bW7/lastExec/results?token=SJpxzSMzhGXDC8nJYND48RWNu')
       const codepen = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct')
+      const twitter = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww')
       return {
-        medium: medium.data[0].pageFunctionResult,
-        codepen: codepen.data[0].pageFunctionResult,
+        medium: medium.data && medium.data[0].pageFunctionResult,
+        codepen: codepen.data && codepen.data[0].pageFunctionResult,
+        twitter: twitter.data && twitter.data[0].pageFunctionResult,
       }
     },
   }
