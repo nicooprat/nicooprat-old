@@ -23,6 +23,12 @@
     align-items: center;
     font-size: 2.5em;
     font-weight: 900;
+    margin-bottom: 0;
+    padding: 1em 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
 
     > svg {
       width: 1em;
