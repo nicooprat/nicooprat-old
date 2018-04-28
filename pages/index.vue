@@ -5,6 +5,7 @@
     <medium :articles="medium"/>
     <codepen :pens="codepen"/>
     <twitter :tweets="twitter"/>
+    <meetup :events="meetup"/>
 
     <form name="contact" method="POST" netlify>
       <p>
@@ -31,6 +32,7 @@
   import medium from '~/components/medium.vue'
   import codepen from '~/components/codepen.vue'
   import twitter from '~/components/twitter.vue'
+  import meetup from '~/components/meetup.vue'
 
   export default {
     components: {
@@ -39,6 +41,8 @@
       medium,
       codepen,
       twitter,
+      twitter,
+      meetup,
     },
 
     data() {
@@ -46,6 +50,7 @@
         medium: [],
         codepen: [],
         twitter: [],
+        meetup: [],
       }
     },
 
@@ -53,10 +58,12 @@
       const medium = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/4jqjYdusZaPwu9bW7/lastExec/results?token=SJpxzSMzhGXDC8nJYND48RWNu')
       const codepen = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct')
       const twitter = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww')
+      const meetup = await axios.get('https://api.meetup.com/self/events?desc=true&scroll=next_upcoming&photo-host=secure&page=12&sig_id=144086432&sig=53af04b00dfc30e042a19bb595be7e054ff71487')
       return {
         medium: medium.data && medium.data[0].pageFunctionResult,
         codepen: codepen.data && codepen.data[0].pageFunctionResult,
         twitter: twitter.data && twitter.data[0].pageFunctionResult,
+        meetup: meetup.data && meetup.data.slice(0,6),
       }
     },
   }
