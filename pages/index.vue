@@ -6,6 +6,7 @@
     <codepen :pens="codepen"/>
     <twitter :tweets="twitter"/>
     <meetup :events="meetup"/>
+    <dribbble :shots="dribbble"/>
 
     <form name="contact" method="POST" netlify>
       <p>
@@ -33,6 +34,7 @@
   import codepen from '~/components/codepen.vue'
   import twitter from '~/components/twitter.vue'
   import meetup from '~/components/meetup.vue'
+  import dribbble from '~/components/dribbble.vue'
 
   export default {
     components: {
@@ -43,6 +45,7 @@
       twitter,
       twitter,
       meetup,
+      dribbble,
     },
 
     data() {
@@ -51,6 +54,7 @@
         codepen: [],
         twitter: [],
         meetup: [],
+        dribbble: [],
       }
     },
 
@@ -59,11 +63,13 @@
       const codepen = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct')
       const twitter = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww')
       const meetup = await axios.get('https://api.meetup.com/self/events?desc=true&scroll=next_upcoming&photo-host=secure&page=12&sig_id=144086432&sig=53af04b00dfc30e042a19bb595be7e054ff71487')
+      const dribbble = await axios.get('https://api.dribbble.com/v2/user/shots?access_token=adf54688450e377e645e62c86e051ad245d211d71803266d099c54d4594a2234')
       return {
         medium: medium.data && medium.data[0].pageFunctionResult,
         codepen: codepen.data && codepen.data[0].pageFunctionResult,
         twitter: twitter.data && twitter.data[0].pageFunctionResult,
         meetup: meetup.data && meetup.data.slice(0,6),
+        dribbble: dribbble.data && dribbble.data.slice(0,6),
       }
     },
   }
