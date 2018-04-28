@@ -41,18 +41,18 @@
   }
 </script>
 
-<style>
-
+<style lang="scss">
   @import "normalize.css/normalize.css";
+  @import "~/assets/common.scss";
 
   *, *:before, *:after {
     box-sizing: border-box;
   }
 
   html {
-    --link: hsl(213, 84%, 52%);
-    --color: hsl(213, 35%, 40%);
-    --gutter: 20px;
+    --link: #{$link};
+    --color: #{$color};
+    --gutter: #{$gutter};
   }
 
   html {

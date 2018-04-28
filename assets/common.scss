@@ -1,1 +1,44 @@
 @import "~include-media/dist/include-media";
+
+$link: hsl(213, 84%, 52%);
+$color: hsl(213, 35%, 40%);
+$gutter: 20px;
+
+$breakpoints: (phone: 520px, tablet: 768px, desktop: 1024px, large: 1300px);
+
+@function spacer($i:1) {
+  @return calc(var(--gutter) * #{$i});
+}
+
+@mixin snap($media: '<=phone') {
+
+  @include media($media) {
+
+    @supports(scroll-snap-type: mandatory) {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      margin-left: spacer(-1);
+      margin-right: spacer(-1);
+      overflow: auto;
+      scroll-snap-type: mandatory;
+      scroll-snap-points-x: repeat(90%);
+
+      &:after {
+        content: '';
+        flex: 0 0 auto;
+        width: 10vw;
+      }
+
+      > * {
+        flex: 0 0 auto;
+        max-width: none;
+        width: 85vw;
+        margin: 0 0 0 5vw;
+        scroll-snap-align: center;
+      }
+    }
+  }
+}
