@@ -17,8 +17,11 @@
     props: ['event'],
 
     data() {
+      // Destructure dates
       const dates = this.$props.event.local_date.split('-')
       const times = this.$props.event.local_time.split(':')
+      // Months begin at 0
+      dates[2] = parseInt(dates[2]) - 1
       // Day & month are reversed in French
       const d = new Date(dates[0], dates[2], dates[1], times[0], times[1])
       return {
