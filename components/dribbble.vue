@@ -5,7 +5,7 @@
     </heading>
 
     <nav v-if="shots">
-      <dribbble-item v-for="shot in shots" :shot="shot" :key="shot.title"/>
+      <dribbble-item v-for="shot in shots" v-bind="shot" :key="shot.title"/>
     </nav>
   </section>
 </template>

@@ -1,22 +1,20 @@
 <template>
-  <a :href="article.link">
+  <a :href="link">
     <span>
-      <img v-if="article.thumb" :src="article.thumb" :alt="article.title">
+      <img v-if="thumb" :src="thumb" :alt="title">
     </span>
-    <h4 v-text="article.title"></h4>
-    <small v-text="article.excerpt"></small>
+    <h4 v-text="title"></h4>
+    <small v-text="excerpt"></small>
   </a>
 </template>
 
 <script>
   export default {
     props: {
-      article: {
-        title: {type: String, required: true},
-        thumb: {type: String, required: true},
-        excerpt: {type: String, required: false},
-        link: {type: String, required: true},
-      }
+      title: {type: String, required: true},
+      thumb: {type: [String, Boolean], required: true},
+      excerpt: {type: String, required: false},
+      link: {type: String, required: true},
     }
   }
 </script>

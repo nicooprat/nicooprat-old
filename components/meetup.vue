@@ -5,7 +5,7 @@
     </heading>
 
     <nav v-if="events">
-      <meetup-item v-for="event in events" :event="event" :key="event.title"/>
+      <meetup-item v-for="event in events" v-bind="event" :key="event.title"/>
     </nav>
   </section>
 </template>

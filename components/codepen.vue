@@ -16,7 +16,7 @@
     </heading>
 
     <nav v-if="pens">
-      <codepen-item v-for="pen in pens" :pen="pen" :key="pen.title"/>
+      <codepen-item v-for="pen in pens" v-bind="pen" :key="pen.title"/>
     </nav>
   </section>
 </template>

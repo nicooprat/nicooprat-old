@@ -1,26 +1,24 @@
 <template>
-  <a :href="pen.link">
+  <a :href="link">
     <span>
-      <img v-if="pen.thumb" :src="pen.thumb" :alt="pen.title">
+      <img v-if="thumb" :src="thumb" :alt="title">
     </span>
-    <h4 v-text="pen.title"></h4>
-    <small v-text="pen.excerpt"></small>
+    <h4 v-text="title"></h4>
+    <small v-text="excerpt"></small>
   </a>
 </template>
 
 <script>
   export default {
     props: {
-      pen: {
-        title: {type: String, required: true},
-        thumb: {type: String, required: true},
-        excerpt: {type: String, required: false},
-        link: {type: String, required: true},
-        slug: {type: String, required: true},
-        views: {type: Number, required: true},
-        comments: {type: Number, required: true},
-        loves: {type: Number, required: true},
-      }
+      title: {type: String, required: true},
+      thumb: {type: String, required: true},
+      excerpt: {type: String, required: false},
+      link: {type: String, required: true},
+      slug: {type: String, required: true},
+      views: {type: Number, required: false},
+      comments: {type: Number, required: false},
+      loves: {type: Number, required: false},
     }
   }
 </script>

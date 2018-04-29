@@ -5,7 +5,7 @@
     </heading>
 
     <nav v-if="articles">
-      <medium-item v-for="article in articles" :article="article" :key="article.title"/>
+      <medium-item v-for="article in articles" v-bind="article" :key="article.title"/>
     </nav>
   </section>
 </template>

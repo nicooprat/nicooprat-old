@@ -1,7 +1,7 @@
 <template>
-  <a :href="repo.link">
-    <h4 v-text="repo.title"></h4>
-    <small v-text="repo.description"></small>
+  <a :href="'//github.com'+link">
+    <h4 v-text="title"></h4>
+    <small v-text="description"></small>
     <time :datetime="datetime">
       <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 24l3-9h-9l14-15-3 9h9l-14 15z"/></svg>
       {{date}}
@@ -14,11 +14,16 @@
   import fr from 'date-fns/locale/fr'
 
   export default {
-    props: ['repo'],
+    props: {
+      link: {type: String, required: true},
+      description: {type: String, required: true},
+      updated: {type: String, required: true},
+      title: {type: String, required: true},
+    },
 
     data() {
       // Split datetime "2018-04-28T17:21:16Z"
-      const dateArray = this.$props.repo.updated.split(/[-:TZ]+/)
+      const dateArray = this.$props.updated.split(/[-:TZ]+/)
       // Months begin at 0
       dateArray[1] = parseInt(dateArray[1]) - 1
       const d = new Date(...dateArray)
