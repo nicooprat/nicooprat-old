@@ -13,9 +13,6 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Arvo:400,700|Roboto:400,700,900' },
     ],
-    script: [
-      { src: 'https://platform.twitter.com/widgets.js', async: true }
-    ]
   },
   css: [
     // {src: 'normalize/normalize.css'}

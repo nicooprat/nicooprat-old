@@ -28,7 +28,12 @@
     },
 
     mounted() {
-      twttr && twttr.widgets.load()
+      let script = document.createElement('script')
+      script.onload = function () {
+        typeof(twttr) != 'undefined' && twttr.widgets.load()
+      }
+      script.src = '//platform.twitter.com/widgets.js'
+      document.body.appendChild(script)
     }
   }
 </script>
