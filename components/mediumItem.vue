@@ -3,7 +3,7 @@
     <span>
       <img v-if="article.thumb" :src="article.thumb" :alt="article.title">
     </span>
-    <strong v-text="article.title"></strong>
+    <h4 v-text="article.title"></h4>
     <small v-text="article.excerpt"></small>
   </a>
 </template>
@@ -48,8 +48,8 @@
     overflow: hidden;
   }
 
-  strong {
-    display: block;
+  h4 {
+    margin: 0;
   }
 
   small {
