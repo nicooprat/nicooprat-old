@@ -3,11 +3,11 @@
     <cover/>
     <intro/>
     <medium :articles="medium"/>
+    <meetup :events="meetup"/>
     <codepen :pens="codepen"/>
     <twitter :tweets="twitter"/>
-    <meetup :events="meetup"/>
-    <dribbble :shots="dribbble"/>
     <github :repos="github"/>
+    <dribbble :shots="dribbble"/>
 
     <form name="contact" method="POST" netlify>
       <p>
@@ -94,6 +94,7 @@
     --link: #{$link};
     --color: #{$color};
     --gutter: #{$gutter};
+    --sectionColor: white;
   }
 
   html {
@@ -135,5 +136,6 @@
   .section {
     padding-top: 10vh;
     padding-bottom: 10vh;
+    background-color: var(--sectionColor);
   }
 </style>

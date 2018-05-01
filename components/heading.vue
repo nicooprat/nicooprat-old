@@ -18,17 +18,17 @@
   @import "~/assets/common.scss";
 
   h3 {
-    position: relative;
     display: flex;
     align-items: center;
     font-size: 2.5em;
     font-weight: 900;
     margin-bottom: 0;
     padding: 1em 0;
+    position: relative;
     position: sticky;
-    top: 0;
+    top: -1px;
     z-index: 2;
-    background-color: white;
+    background-color: var(--sectionColor);
 
     > svg {
       width: 1em;

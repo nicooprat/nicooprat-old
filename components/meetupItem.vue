@@ -4,7 +4,7 @@
     <h4 v-text="name"></h4>
     <small v-text="description.replace(/(<([^>]+)>)/ig, ' ')"></small>
     <span v-if="venue">
-      <strong :title="[venue.address_1, venue.city].join(', ')">{{venue.name}}</strong>
+      <strong :title="[venue.address_1, venue.city].join(', ')">{{venue.name}}, {{venue.city}}</strong>
     </span>
   </a>
 </template>

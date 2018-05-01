@@ -32,6 +32,11 @@
 <style lang="scss" scoped>
   @import "~/assets/common.scss";
 
+  section {
+    --sectionColor: #ea4c89;
+    color: white;
+  }
+
   nav {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
