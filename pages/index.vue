@@ -128,6 +128,14 @@
     height: auto;
   }
 
+  section {
+    transform: skewY(-1deg);
+
+    > * {
+      transform: skewY(1deg);
+    }
+  }
+
   .container {
     padding-left: calc(50vw - 25rem);
     padding-right: calc(50vw - 25rem);
