@@ -77,7 +77,7 @@
     font-size: .8em;
     opacity: .5;
     text-transform: capitalize;
-    margin-top: calc(var(--gutter) / 4);
+    margin-top: spacer(.25);
 
     svg {
       width: .9em;

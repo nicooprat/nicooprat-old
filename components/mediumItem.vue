@@ -5,16 +5,33 @@
     </span>
     <h4 v-text="title"></h4>
     <small v-text="excerpt"></small>
+    <time :datetime="datetime">{{dateFormatted}}</time>
   </a>
 </template>
 
 <script>
+  import { format } from 'date-fns'
+  import fr from 'date-fns/locale/fr'
+
   export default {
     props: {
       title: {type: String, required: true},
       thumb: {type: [String, Boolean], required: true},
       excerpt: {type: String, required: false},
       link: {type: String, required: true},
+      date: {type: String, required: true},
+    },
+
+    data() {
+      // Split datetime "2018-04-28T17:21:16Z"
+      const dateArray = this.$props.date.split(/[-:TZ]+/)
+      // Months begin at 0
+      dateArray[1] = parseInt(dateArray[1]) - 1
+      const d = new Date(...dateArray)
+      return {
+        datetime: format(d),
+        dateFormatted: format(d, 'Do MMMM YYYY', {locale: fr}),
+      }
     }
   }
 </script>
@@ -53,5 +70,12 @@
   small {
     display: block;
     margin-top: calc(var(--gutter) / 2);
+  }
+
+  time {
+    display: block;
+    font-size: .8em;
+    opacity: .5;
+    margin-top: spacer(.25);
   }
 </style>
