@@ -1,12 +1,19 @@
 <template>
   <main>
     <cover/>
+    <curve top="#3f6188" bottom="white"/>
     <intro/>
+    <curve top="white" bottom="#f5f6f7"/>
     <medium :articles="medium"/>
+    <curve top="#f5f6f7" bottom="#f44362"/>
     <meetup :events="meetup"/>
+    <curve top="#f44362" bottom="#343338"/>
     <codepen :pens="codepen"/>
+    <curve top="#343338" bottom="#08a2ec"/>
     <twitter :tweets="twitter"/>
+    <curve top="#08a2ec" bottom="#25292e"/>
     <github :repos="github"/>
+    <curve top="#25292e" bottom="#f04a89"/>
     <dribbble :shots="dribbble"/>
 
     <form name="contact" method="POST" netlify>
@@ -38,6 +45,8 @@
   import dribbble from '~/components/dribbble.vue'
   import github from '~/components/github.vue'
 
+  import curve from '~/components/curve.vue'
+
   export default {
     components: {
       cover,
@@ -49,6 +58,7 @@
       meetup,
       dribbble,
       github,
+      curve,
     },
 
     data() {
@@ -126,14 +136,6 @@
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  section {
-    transform: skewY(-1deg);
-
-    > * {
-      transform: skewY(1deg);
-    }
   }
 
   .container {
