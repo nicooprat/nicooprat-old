@@ -14,7 +14,8 @@
   header {
     display: flex;
     align-items: center;
-    background-color: #f5f6f7;
+    background-color: var(--color);
+    color: white;
     position: relative;
   }
 

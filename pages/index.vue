@@ -94,6 +94,7 @@
   html {
     --link: #{$link};
     --color: #{$color};
+    --bgColor: #{$bgColor};
     --gutter: #{$gutter};
     --sectionColor: white;
   }
