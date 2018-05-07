@@ -3,8 +3,9 @@
     <time :datetime="datetime">{{date}} ⁃ {{time}}</time>
     <h4 v-text="name"></h4>
     <small v-text="description.replace(/(<([^>]+)>)/ig, ' ')"></small>
-    <span v-if="venue">
-      <strong :title="[venue.address_1, venue.city].join(', ')">{{venue.name}}, {{venue.city}}</strong>
+    <span>
+      <strong v-if="group" :title="group.who">{{group.name}}</strong>
+      <strong v-if="venue" :title="[venue.address_1, venue.city].join(', ')">{{venue.name}}, {{venue.city}}</strong>
     </span>
   </a>
 </template>
@@ -20,18 +21,18 @@
       name: {type: String, required: true},
       description: {type: String, required: false},
       venue: {type: Object, required: false},
+      group: {type: Object, required: false},
       local_date: {type: String, required: false},
       local_time: {type: String, required: false},
     },
 
     data() {
       // Destructure dates
-      const dates = this.$props.local_date.split('-')
-      const times = this.$props.local_time.split(':')
+      const dates = this.$props.local_date.split('-').map(d => parseInt(d))
+      const times = this.$props.local_time.split(':').map(d => parseInt(d))
       // Months begin at 0
-      dates[2] = parseInt(dates[2]) - 1
-      // Day & month are reversed in French
-      const d = new Date(dates[0], dates[2], dates[1], times[0], times[1])
+      dates[1] = dates[1] - 1
+      const d = new Date(...dates, ...times)
       return {
         datetime: format(d),
         date: format(d, 'dddd Do MMMM', {locale: fr}),
@@ -78,5 +79,9 @@
     display: block;
     font-size: .8em;
     margin-top: calc(var(--gutter) / 2);
+
+    strong + strong:before {
+      content: ' ∙ ';
+    }
   }
 </style>
