@@ -14,7 +14,7 @@
   header {
     display: flex;
     align-items: center;
-    background-color: var(--color);
+    background-color: var(--link);
     color: white;
     position: relative;
 

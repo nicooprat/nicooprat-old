@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <main :style="styles">
     <cover/>
-    <curve top="#3f6188" bottom="white"/>
+    <curve top="#4c91dd" bottom="white"/>
     <intro/>
     <curve top="white" bottom="#f5f6f7"/>
     <medium :articles="medium"/>
@@ -69,7 +69,54 @@
         meetup: [],
         dribbble: [],
         github: [],
+
+        scrollY: 0,
+        deltaY: 0,
+        scaleY: 0,
+        slowness: .85,
+        accelerator: 1
       }
+    },
+
+    computed: {
+      styles() {
+        return {
+          '--transformTop': this.minmax(this.scaleY, 0, 1).toFixed(4),
+          '--transformBottom': this.minmax(-this.scaleY, 0, 1).toFixed(4),
+        }
+      }
+    },
+
+    watch: {
+      scrollY(val, oldVal) {
+        this.deltaY = (oldVal - val) * this.accelerator
+      },
+      deltaY(val, oldVal) {
+        const vw = window.innerWidth
+        const vh = window.innerHeight
+        const vmax = vw+vh
+        this.scaleY += val / (vmax/2)
+      },
+    },
+
+    mounted() {
+      document.addEventListener('scroll', this.handleScroll)
+      requestAnimationFrame(this.slowDown)
+    },
+
+    beforeDestroy() {
+      document.removeEventListener('scroll', this.handleScroll)
+    },
+
+    methods: {
+      handleScroll(e) {
+        this.scrollY = window.scrollY
+      },
+      slowDown(e) {
+        this.scaleY *= this.slowness
+        requestAnimationFrame(this.slowDown)
+      },
+      minmax: (val, min, max) => Math.max(min, Math.min(max, val))
     },
 
     async asyncData({params, error}) {
