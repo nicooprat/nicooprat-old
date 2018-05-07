@@ -98,6 +98,7 @@
   @import "~/assets/common.scss";
 
   *, *:before, *:after {
+    -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
   }
 
@@ -120,6 +121,7 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 
   a {
@@ -149,5 +151,10 @@
     padding-top: 10vh;
     padding-bottom: 10vh;
     background-color: var(--sectionColor);
+
+    @include media('<=phone') {
+      padding-top: 5vh;
+      padding-bottom: 5vh;
+    }
   }
 </style>

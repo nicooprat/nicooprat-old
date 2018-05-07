@@ -17,17 +17,29 @@
     background-color: var(--color);
     color: white;
     position: relative;
+
+    @include media('<=phone') {
+      flex-direction: column;
+      text-align: center;
+      font-size: .8em;
+    }
   }
 
   div {
-    padding-right: 1em;
+
+    @include media('>phone') {
+      padding-right: 1em;
+    }
   }
 
   img {
-    order: 1;
-    margin-left: auto;
-    width: 7rem;
+    width: 7em;
     border-radius: 999px;
+
+    @include media('>phone') {
+      margin-left: auto;
+      order: 1;
+    }
   }
 
   h1, h2 {
@@ -42,13 +54,16 @@
     letter-spacing: -.075em;
     line-height: 1;
 
+    @include media('<=phone') {
+      margin: .25em 0;
+    }
+
     span {
       opacity: .15;
 
       &:first-of-type {
         position: absolute;
-        right: 100%;
-        transform: scale(1.1) translate(10%,-3%);
+        transform: scale(1.1) translate(-85%,-3%);
       }
 
       &:last-of-type {

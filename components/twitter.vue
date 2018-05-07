@@ -5,9 +5,11 @@
     </heading>
 
     <nav v-if="tweets">
-      <blockquote v-for="tweet in tweets" class="twitter-tweet" data-lang="fr" :key="tweet.id">
-        <p :lang="tweet.lang" dir="ltr" v-html="tweet.content"></p>
-        &mdash; Nico Prat (@nicooprat) <a :href="'https://twitter.com'+tweet.link" v-text="tweet.date"></a></blockquote>
+      <div v-for="tweet in tweets" :key="tweet.id">
+        <blockquote class="twitter-tweet" data-lang="fr">
+          <p :lang="tweet.lang" dir="ltr" v-html="tweet.content"></p>
+          &mdash; Nico Prat (@nicooprat) <a :href="'https://twitter.com'+tweet.link" v-text="tweet.date"></a></blockquote>
+        </div>
     </nav>
   </section>
 </template>

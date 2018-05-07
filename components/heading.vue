@@ -24,12 +24,18 @@
     font-weight: 900;
     margin-top: 0;
     margin-bottom: 0;
-    padding: 1em 0;
+    padding: 1em spacer();
+    margin-left: spacer(-1);
+    margin-right: spacer(-1);
     position: relative;
     position: sticky;
     top: -1px;
     z-index: 2;
     background-color: var(--sectionColor);
+
+    @include media('<=phone') {
+      font-size: 1.8em;
+    }
 
     & + * {
       margin-top: 1em;

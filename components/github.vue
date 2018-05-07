@@ -46,12 +46,35 @@
   p {
     margin-bottom: calc(var(--gutter) * 2);
     overflow: hidden;
+
+    @include media('<=phone') {
+      display: flex;
+      overflow: auto;
+      margin-left: spacer(-1);
+      margin-right: spacer(-1);
+      direction: rtl;
+
+      &:before,
+      &:after {
+        content: '';
+        flex: 0 0 auto;
+        width: spacer();
+      }
+    }
   }
 
   img {
     display: block;
-    width: calc(100% + 17px);
     max-width: none;
     margin-left: -17px;
+
+    @include media('<=phone') {
+      min-width: 702px;
+      height: auto;
+    }
+
+    @include media('>phone') {
+      width: calc(100% + 17px);
+    }
   }
 </style>
