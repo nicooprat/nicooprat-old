@@ -8,20 +8,22 @@
       <img src="https://ghchart.rshah.org/3f6188/nicooprat" alt="nicooprat Github activity">
     </p>
 
-    <nav v-if="repos">
+    <grid v-if="repos">
       <github-item v-for="repo in repos" v-bind="repo" :key="repo.link"/>
-    </nav>
+    </grid>
   </section>
 </template>
 
 <script>
   import githubItem from '~/components/githubItem.vue'
   import heading from '~/components/heading.vue'
+  import grid from '~/components/grid.vue'
 
   export default {
     components: {
       githubItem,
       heading,
+      grid,
     },
 
     props: {
@@ -51,12 +53,5 @@
     width: calc(100% + 17px);
     max-width: none;
     margin-left: -17px;
-  }
-
-  nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
-    grid-gap: calc(var(--gutter) * 2) var(--gutter);
-    @include snap();
   }
 </style>

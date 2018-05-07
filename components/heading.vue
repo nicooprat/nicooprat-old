@@ -22,6 +22,7 @@
     align-items: center;
     font-size: 2.5em;
     font-weight: 900;
+    margin-top: 0;
     margin-bottom: 0;
     padding: 1em 0;
     position: relative;
@@ -29,6 +30,10 @@
     top: -1px;
     z-index: 2;
     background-color: var(--sectionColor);
+
+    & + * {
+      margin-top: 1em;
+    }
 
     > svg {
       width: 1em;

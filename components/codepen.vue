@@ -15,20 +15,22 @@
       </svg>
     </heading>
 
-    <nav v-if="pens">
+    <grid v-if="pens">
       <codepen-item v-for="pen in pens" v-bind="pen" :key="pen.title"/>
-    </nav>
+    </grid>
   </section>
 </template>
 
 <script>
   import codepenItem from '~/components/codepenItem.vue'
   import heading from '~/components/heading.vue'
+  import grid from '~/components/grid.vue'
 
   export default {
     components: {
       codepenItem,
       heading,
+      grid,
     },
 
     props: {
@@ -46,12 +48,5 @@
   section {
     --sectionColor: #343338;
     color: white;
-  }
-
-  nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
-    grid-gap: calc(var(--gutter) * 2) var(--gutter);
-    @include snap();
   }
 </style>
