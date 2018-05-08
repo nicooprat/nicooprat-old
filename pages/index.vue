@@ -9,11 +9,11 @@
     <meetup :events="meetup"/>
     <curve top="#f44362" bottom="#343338"/>
     <codepen :pens="codepen"/>
-    <curve top="#343338" bottom="#08a2ec"/>
+    <curve top="#343338" bottom="#2aa3ef"/>
     <twitter :tweets="twitter"/>
-    <curve top="#08a2ec" bottom="#25292e"/>
+    <curve top="#2aa3ef" bottom="#25292e"/>
     <github :repos="github"/>
-    <curve top="#25292e" bottom="#f04a89"/>
+    <curve top="#25292e" bottom="#ea4c89"/>
     <dribbble :shots="dribbble"/>
 
     <form name="contact" method="POST" netlify>
@@ -71,50 +71,42 @@
         github: [],
 
         scrollY: 0,
-        deltaY: 0,
         scaleY: 0,
-        slowness: .85,
-        accelerator: 1
+        slowness: .88,
       }
     },
 
     computed: {
+      accelerator() {
+        return (window.innerWidth + window.innerHeight) / 2
+      },
       styles() {
         return {
-          '--transformTop': this.minmax(this.scaleY, 0, 1).toFixed(4),
-          '--transformBottom': this.minmax(-this.scaleY, 0, 1).toFixed(4),
+          '--transformTop': this.minmax(-this.scaleY, 0, 1).toFixed(4),
+          '--transformBottom': this.minmax(this.scaleY, 0, 1).toFixed(4),
         }
       }
     },
 
-    watch: {
-      scrollY(val, oldVal) {
-        this.deltaY = (oldVal - val) * this.accelerator
-      },
-      deltaY(val, oldVal) {
-        const vw = window.innerWidth
-        const vh = window.innerHeight
-        const vmax = vw+vh
-        this.scaleY += val / (vmax/2)
-      },
-    },
-
     mounted() {
-      document.addEventListener('scroll', this.handleScroll)
-      requestAnimationFrame(this.slowDown)
+      requestAnimationFrame(this.updateCurve)
     },
 
     beforeDestroy() {
-      document.removeEventListener('scroll', this.handleScroll)
     },
 
     methods: {
-      handleScroll(e) {
+      updateCurve(e) {
+        // Get difference between previous scroll position
+        const deltaY = window.scrollY - this.scrollY
+        // Remember current scroll position
         this.scrollY = window.scrollY
-      },
-      slowDown(e) {
-        this.scaleY *= this.slowness
-        requestAnimationFrame(this.slowDown)
+        // Calculate new scale
+        const newScale = deltaY / this.accelerator
+        // Add new scale and slow it
+        this.scaleY = (this.scaleY + newScale) * this.slowness
+        // Do it again
+        requestAnimationFrame(this.updateCurve)
       },
       minmax: (val, min, max) => Math.max(min, Math.min(max, val))
     },

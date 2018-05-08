@@ -35,13 +35,13 @@
 
   .top {
     margin-bottom: -1px;
-    transform: scaleY(var(--transformTop));
+    transform: scale3d(1, var(--transformTop), 1);
     transform-origin: bottom;
   }
 
   .bottom {
     margin-top: -1px;
-    transform: scaleY(var(--transformBottom));
+    transform: scale3d(1, var(--transformBottom), 1);
     transform-origin: top;
   }
 </style>

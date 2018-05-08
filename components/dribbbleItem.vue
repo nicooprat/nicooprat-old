@@ -37,6 +37,7 @@
     background-color: rgba(black,.03);
     margin-bottom: calc(var(--gutter) / 2);
     overflow: hidden;
+    transform: translate3d(0,0,0); // Avoid perfs issues with GIFs
   }
 
   img {
