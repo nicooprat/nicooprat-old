@@ -72,7 +72,7 @@
 
         scrollY: 0,
         scaleY: 0,
-        slowness: .88,
+        slowness: .85,
         showCurves: false
       }
     },

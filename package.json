@@ -17,7 +17,8 @@
     "date-fns": "^1.29.0",
     "include-media": "^1.4.9",
     "normalize.css": "^8.0.0",
-    "nuxt": "^1.0.0"
+    "nuxt": "^1.0.0",
+    "vanilla-tilt": "^1.4.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
