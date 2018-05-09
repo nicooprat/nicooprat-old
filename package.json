@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "cachios": "^1.1.0",
     "date-fns": "^1.29.0",
     "include-media": "^1.4.9",
