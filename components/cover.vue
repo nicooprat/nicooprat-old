@@ -76,5 +76,6 @@
   h2 {
     font-size: 1.6em;
     font-weight: 300;
+    opacity: .7;
   }
 </style>

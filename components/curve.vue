@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div aria-hidden="true">
     <svg class="top" viewBox="0 0 500 105" PreserveAspectRatio="none">
       <path :fill="bottom" d="M250,104.6C152.1,104.6,63.7,64.6,0,0l0,105.1h500V0C436.3,64.6,347.9,104.6,250,104.6z"/>
     </svg>
@@ -35,13 +35,13 @@
 
   .top {
     margin-bottom: -1px;
-    transform: scale3d(1, var(--transformTop), 1);
+    transform: scale3d(1, var(--transform-top), 1);
     transform-origin: bottom;
   }
 
   .bottom {
     margin-top: -1px;
-    transform: scale3d(1, var(--transformBottom), 1);
+    transform: scale3d(1, var(--transform-bottom), 1);
     transform-origin: top;
   }
 </style>

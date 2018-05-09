@@ -1,19 +1,19 @@
 <template>
   <main :style="styles">
     <cover/>
-    <curve top="#4c91dd" bottom="white"/>
+    <curve v-if="showCurves" top="#4c91dd" bottom="white"/>
     <intro/>
-    <curve top="white" bottom="#f5f6f7"/>
+    <curve v-if="showCurves" top="white" bottom="#f5f6f7"/>
     <medium :articles="medium"/>
-    <curve top="#f5f6f7" bottom="#f44362"/>
+    <curve v-if="showCurves" top="#f5f6f7" bottom="#f44362"/>
     <meetup :events="meetup"/>
-    <curve top="#f44362" bottom="#343338"/>
+    <curve v-if="showCurves" top="#f44362" bottom="#343338"/>
     <codepen :pens="codepen"/>
-    <curve top="#343338" bottom="#2aa3ef"/>
+    <curve v-if="showCurves" top="#343338" bottom="#2aa3ef"/>
     <twitter :tweets="twitter"/>
-    <curve top="#2aa3ef" bottom="#25292e"/>
+    <curve v-if="showCurves" top="#2aa3ef" bottom="#25292e"/>
     <github :repos="github"/>
-    <curve top="#25292e" bottom="#ea4c89"/>
+    <curve v-if="showCurves" top="#25292e" bottom="#ea4c89"/>
     <dribbble :shots="dribbble"/>
 
     <form name="contact" method="POST" netlify>
@@ -73,6 +73,7 @@
         scrollY: 0,
         scaleY: 0,
         slowness: .88,
+        showCurves: false
       }
     },
 
@@ -82,8 +83,8 @@
       },
       styles() {
         return {
-          '--transformTop': this.minmax(-this.scaleY, 0, 1).toFixed(4),
-          '--transformBottom': this.minmax(this.scaleY, 0, 1).toFixed(4),
+          '--transform-top': this.minmax(-this.scaleY, 0, 1).toFixed(4),
+          '--transform-bottom': this.minmax(this.scaleY, 0, 1).toFixed(4),
         }
       }
     },
@@ -105,6 +106,8 @@
         const newScale = deltaY / this.accelerator
         // Add new scale and slow it
         this.scaleY = (this.scaleY + newScale) * this.slowness
+        // Show curves
+        this.showCurves = true
         // Do it again
         requestAnimationFrame(this.updateCurve)
       },
