@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import cachios from 'cachios'
 
   import cover from '~/components/cover.vue'
   import intro from '~/components/intro.vue'
@@ -115,13 +115,13 @@
     },
 
     async asyncData({params, error}) {
-      const medium = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/4jqjYdusZaPwu9bW7/lastExec/results?token=SJpxzSMzhGXDC8nJYND48RWNu')
-      const codepen = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct')
-      const twitter = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww')
-      const meetupUpcoming = await axios.get('https://api.meetup.com/self/events?scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=upcoming&fields=group&sig=67fd9ec1b81b7a6027f7332221810b77e262ec20')
-      const meetupPast = await axios.get('https://api.meetup.com/self/events?desc=true&scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=past&fields=group&sig=23e9ab019654e79ba238dc9e3a32de09cc4bac47')
-      const dribbble = await axios.get('https://api.dribbble.com/v2/user/shots?access_token=adf54688450e377e645e62c86e051ad245d211d71803266d099c54d4594a2234')
-      const github = await axios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/iMsuiLC6pCB3QFg6r/lastExec/results?token=Fo9YSdwmYwkY5e69ATkmpotJy')
+      const medium = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/4jqjYdusZaPwu9bW7/lastExec/results?token=SJpxzSMzhGXDC8nJYND48RWNu')
+      const codepen = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct')
+      const twitter = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww')
+      const meetupUpcoming = await cachios.get('https://api.meetup.com/self/events?scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=upcoming&fields=group&sig=67fd9ec1b81b7a6027f7332221810b77e262ec20')
+      const meetupPast = await cachios.get('https://api.meetup.com/self/events?desc=true&scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=past&fields=group&sig=23e9ab019654e79ba238dc9e3a32de09cc4bac47')
+      const dribbble = await cachios.get('https://api.dribbble.com/v2/user/shots?access_token=adf54688450e377e645e62c86e051ad245d211d71803266d099c54d4594a2234')
+      const github = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/iMsuiLC6pCB3QFg6r/lastExec/results?token=Fo9YSdwmYwkY5e69ATkmpotJy')
 
       return {
         medium: medium.data && medium.data[0].pageFunctionResult.slice(0,6),
