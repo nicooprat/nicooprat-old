@@ -43,6 +43,12 @@
     text-decoration: none;
     color: inherit;
     border-bottom: none;
+    transform-style: preserve-3d;
+
+    &:hover span,
+    &:focus span {
+      transform: translateZ(20px);
+    }
   }
 
   span {
@@ -52,6 +58,7 @@
     background-color: rgba(black,.03);
     margin-bottom: calc(var(--gutter) / 2);
     overflow: hidden;
+    transition: transform 200ms;
   }
 
   img {
