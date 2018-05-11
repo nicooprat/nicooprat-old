@@ -22,7 +22,7 @@
     align-items: center;
     font-size: 2.5em;
     font-weight: 900;
-    margin-top: -1em;
+    margin-top: -10vh;
     margin-bottom: 0;
     padding: 1em spacer();
     margin-left: spacer(-1);

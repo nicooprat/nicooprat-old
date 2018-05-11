@@ -34,14 +34,13 @@
   }
 
   .top {
-    margin-bottom: -1px;
     transform: scale3d(1, var(--transform-top), 1);
     transform-origin: bottom;
   }
 
   .bottom {
-    margin-top: -1px;
     transform: scale3d(1, var(--transform-bottom), 1);
     transform-origin: top;
+    margin-top: -1px; // Fix overlapping
   }
 </style>

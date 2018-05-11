@@ -39,6 +39,7 @@
 <script>
   import cachios from 'cachios'
   import anime from 'animejs'
+  import animate from 'animate'
 
   import cover from '~/components/cover.vue'
   import intro from '~/components/intro.vue'
@@ -98,6 +99,7 @@
       this.showCurves = true
       const duration = 1000
       const delay = 500
+      const fps = 60
 
       anime.timeline({delay})
       .add({
@@ -119,7 +121,7 @@
         elasticity: 500,
         duration: duration * 1.5,
         offset: duration/4,
-        complete: (anim) => requestAnimationFrame(this.updateCurve)
+        complete: (anim) => animate(this.updateCurve, fps)
       })
       .add({
         targets: 'header',
@@ -147,8 +149,6 @@
         this.scaleY = (this.scaleY + newScale) * this.slowness
         // Show curves
         this.showCurves = true
-        // Do it again
-        requestAnimationFrame(this.updateCurve)
       },
       minmax: (val, min, max) => Math.max(min, Math.min(max, val))
     },
