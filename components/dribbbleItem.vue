@@ -1,7 +1,7 @@
 <template>
   <a :href="html_url">
     <span>
-      <img :src="images.hidpi || images.normal" :alt="title" width="400" height="300">
+      <img :src="lazySrc" :data-src="src" :alt="title" width="400" height="300">
     </span>
     <h4 v-text="title"></h4>
     <small v-text="description.replace(/(<([^>]+)>)/ig, ' ')"></small>
@@ -17,7 +17,33 @@
       description: {type: String, required: false},
       title: {type: String, required: true},
       tags: {type: Array, required: false}
-    }
+    },
+
+    data() {
+      return {
+        lazySrc: !process.browser, // Only load if SSR
+        src: this.images.hidpi || this.images.normal
+      }
+    },
+
+    mounted() {
+      // Lazy load tweets
+      if( typeof(IntersectionObserver) != 'undefined' ) {
+        new IntersectionObserver((entries) => {
+          if(entries[0].isIntersecting) this.loadImg()
+        }, {
+          rootMargin: '50%'
+        }).observe(this.$el)
+      } else {
+        setTimeout(() => this.loadImg(), 2000)
+      }
+    },
+
+    methods: {
+      loadImg() {
+        this.lazySrc = this.src
+      }
+    },
   }
 </script>
 
@@ -53,6 +79,10 @@
     width: 100%; height: 100%;
     object-fit: cover;
     overflow: hidden;
+
+    &:not([src]) {
+      visibility: hidden;
+    }
   }
 
   h4 {

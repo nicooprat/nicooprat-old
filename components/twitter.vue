@@ -30,13 +30,28 @@
     },
 
     mounted() {
-      let script = document.createElement('script')
-      script.onload = function () {
-        typeof(twttr) != 'undefined' && twttr.widgets.load()
+      // Lazy load tweets
+      if( typeof(IntersectionObserver) != 'undefined' ) {
+        new IntersectionObserver((entries) => {
+          if(entries[0].isIntersecting) this.loadWidgets()
+        }, {
+          rootMargin: '50%'
+        }).observe(this.$el)
+      } else {
+        setTimeout(() => this.loadWidgets(), 2000)
       }
-      script.src = '//platform.twitter.com/widgets.js'
-      document.body.appendChild(script)
-    }
+    },
+
+    methods: {
+      loadWidgets() {
+        let script = document.createElement('script')
+        script.onload = function () {
+          typeof(twttr) != 'undefined' && twttr.widgets.load()
+        }
+        script.src = '//platform.twitter.com/widgets.js'
+        document.body.appendChild(script)
+      }
+    },
   }
 </script>
 
