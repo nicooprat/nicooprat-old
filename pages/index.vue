@@ -97,7 +97,7 @@
       this.scaleY = 1
       this.showCurves = true
       const duration = 1000
-      const delay = 1000
+      const delay = 500
 
       anime.timeline({delay})
       .add({
@@ -118,7 +118,7 @@
         scaleY: 0,
         elasticity: 500,
         duration: duration * 1.5,
-        offset: duration/3,
+        offset: duration/4,
         complete: (anim) => requestAnimationFrame(this.updateCurve)
       })
       .add({
