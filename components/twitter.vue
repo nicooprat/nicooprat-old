@@ -32,8 +32,12 @@
     mounted() {
       // Lazy load tweets
       if( typeof(IntersectionObserver) != 'undefined' ) {
-        new IntersectionObserver((entries) => {
-          if(entries[0].isIntersecting) this.loadWidgets()
+        const component = this
+        const observer = new IntersectionObserver(function(entries) {
+          if(entries[0].isIntersecting) {
+            component.loadWidgets()
+            this.disconnect()
+          }
         }, {
           rootMargin: '50%'
         }).observe(this.$el)
