@@ -37,19 +37,19 @@
 
     mounted() {
       // Lazy load dribbbles
-      if( typeof(IntersectionObserver) != 'undefined' ) {
-        const component = this
-        new IntersectionObserver(function(entries) {
-          if(entries[0].isIntersecting) {
-            component.loadSrc()
-            this.disconnect()
-          }
-        }, {
-          rootMargin: '50%'
-        }).observe(this.$el)
-      } else {
-        setTimeout(() => this.loadSrc(), 2000)
+      if( typeof(IntersectionObserver) == 'undefined' ) {
+        require('intersection-observer')
       }
+
+      const component = this
+      new IntersectionObserver(function(entries) {
+        if(entries[0].isIntersecting) {
+          component.loadSrc()
+          this.disconnect()
+        }
+      }, {
+        rootMargin: '50%'
+      }).observe(this.$el)
     },
 
     methods: {

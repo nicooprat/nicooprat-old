@@ -31,19 +31,19 @@
 
     mounted() {
       // Lazy load tweets
-      if( typeof(IntersectionObserver) != 'undefined' ) {
-        const component = this
-        const observer = new IntersectionObserver(function(entries) {
-          if(entries[0].isIntersecting) {
-            component.loadWidgets()
-            this.disconnect()
-          }
-        }, {
-          rootMargin: '50%'
-        }).observe(this.$el)
-      } else {
-        setTimeout(() => this.loadWidgets(), 2000)
+      if( typeof(IntersectionObserver) == 'undefined' ) {
+        require('intersection-observer')
       }
+
+      const component = this
+      const observer = new IntersectionObserver(function(entries) {
+        if(entries[0].isIntersecting) {
+          component.loadWidgets()
+          this.disconnect()
+        }
+      }, {
+        rootMargin: '50%'
+      }).observe(this.$el)
     },
 
     methods: {
