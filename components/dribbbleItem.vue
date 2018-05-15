@@ -1,7 +1,7 @@
 <template>
   <a :href="html_url" @mouseenter="mouseEnter" @touchstart="mouseEnter" @mouseleave="mouseLeave" @touchend="mouseLeave" :data-state="state">
     <span>
-      <img :src="src" :data-src="lazySrc" :alt="title" width="400" height="300">
+      <img :src="src" :alt="title" width="400" height="300">
       <button v-if="state !== 'loaded' && isGif">
         <strong v-if="state === 'standby' || state === 'loaded' && !hovering">&nbsp;▶︎</strong>
         <strong v-if="state === 'loading'">∙∙∙</strong>
@@ -28,7 +28,7 @@
       const isGif = this.images.normal.includes('.gif')
       return {
         isGif,
-        lazySrc: isGif ? this.images.teaser : this.images.hidpi,
+        thumb: isGif ? this.images.teaser : this.images.hidpi,
         src: false,
         state: isGif ? 'standby' : 'loaded',
         hovering: false
@@ -36,7 +36,7 @@
     },
 
     mounted() {
-      // Lazy load dribbbles
+      // Lazy load
       if( typeof(IntersectionObserver) == 'undefined' ) {
         require('intersection-observer')
       }
@@ -44,7 +44,7 @@
       const component = this
       new IntersectionObserver(function(entries) {
         if(entries[0].isIntersecting) {
-          component.loadSrc()
+          component.src = component.thumb
           this.disconnect()
         }
       }, {
@@ -53,9 +53,6 @@
     },
 
     methods: {
-      loadSrc() {
-        this.src = this.lazySrc
-      },
       mouseEnter(e) {
         this.state = 'loading'
         this.hovering = true

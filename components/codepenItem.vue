@@ -1,7 +1,7 @@
 <template>
   <a :href="link">
     <span>
-      <img v-if="thumb" :src="thumb" :alt="title">
+      <img v-if="thumb" :src="src" :alt="title">
     </span>
     <h4 v-text="title"></h4>
     <small v-text="excerpt"></small>
@@ -31,7 +31,30 @@
       views: {type: Number, required: false},
       comments: {type: Number, required: false},
       loves: {type: Number, required: false},
-    }
+    },
+
+    data() {
+      return {
+        src: false
+      }
+    },
+
+    mounted() {
+      // Lazy load
+      if( typeof(IntersectionObserver) == 'undefined' ) {
+        require('intersection-observer')
+      }
+
+      const component = this
+      new IntersectionObserver(function(entries) {
+        if(entries[0].isIntersecting) {
+          component.src = component.thumb
+          this.disconnect()
+        }
+      }, {
+        rootMargin: '50%'
+      }).observe(this.$el)
+    },
   }
 </script>
 
@@ -75,6 +98,10 @@
     width: 100%; height: 100%;
     object-fit: cover;
     overflow: hidden;
+
+    &:not([src]) {
+      visibility: hidden;
+    }
   }
 
   h4 {

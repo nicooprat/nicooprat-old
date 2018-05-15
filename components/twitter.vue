@@ -30,7 +30,7 @@
     },
 
     mounted() {
-      // Lazy load tweets
+      // Lazy load
       if( typeof(IntersectionObserver) == 'undefined' ) {
         require('intersection-observer')
       }
@@ -38,7 +38,10 @@
       const component = this
       const observer = new IntersectionObserver(function(entries) {
         if(entries[0].isIntersecting) {
-          component.loadWidgets()
+          let script = document.createElement('script')
+          script.onload = () => typeof(twttr) != 'undefined' && twttr.widgets.load()
+          script.src = '//platform.twitter.com/widgets.js'
+          document.body.appendChild(script)
           this.disconnect()
         }
       }, {
@@ -48,12 +51,6 @@
 
     methods: {
       loadWidgets() {
-        let script = document.createElement('script')
-        script.onload = function () {
-          typeof(twttr) != 'undefined' && twttr.widgets.load()
-        }
-        script.src = '//platform.twitter.com/widgets.js'
-        document.body.appendChild(script)
       }
     },
   }
@@ -77,5 +74,9 @@
       margin: 0 !important;
       background-color: rgba(black,.05);
     }
+  }
+
+  div {
+    overflow: hidden;
   }
 </style>
