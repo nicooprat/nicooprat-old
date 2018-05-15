@@ -88,7 +88,7 @@
       this.scaleY = 1
       this.showCurves = true
       const duration = 800
-      const delay = 500
+      const delay = 0
       const fps = 120
 
       anime.timeline({delay})
