@@ -2,16 +2,16 @@
   <section class="section container">
     <form name="contact" method="POST" netlify>
       <p>
-        <label>Nom</label>
-        <input type="text" name="name" required>
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" required>
       </p>
       <p>
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
       </p>
       <p>
-        <label>Message</label>
-        <textarea name="message" rows="5" required></textarea>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
       </p>
       <p>
         <button type="submit">Envoyer</button>
@@ -46,18 +46,13 @@
   p {
     margin-top: spacer();
     margin-bottom: spacer();
-
-    &:hover label,
-    &:focus-within label, {
-      opacity: 1;
-    }
   }
 
   label {
     display: block;
     font-size: .9em;
     font-weight: 900;
-    margin-bottom: .5em;
+    padding-bottom: .5em;
     opacity: .75;
   }
 
@@ -86,6 +81,7 @@
     text-decoration: none;
     font-weight: bold;
     padding: 0.7em 1em 0.65em;
+    font-size: .9em;
     border: none;
     border-radius: 3px;
     cursor: pointer;
