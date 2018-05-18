@@ -14,6 +14,7 @@
         <textarea name="message" id="message" rows="5" required></textarea>
       </p>
       <p>
+        <input type="hidden" name="form-name" value="contact" />
         <button type="submit">Envoyer</button>
       </p>
     </form>
