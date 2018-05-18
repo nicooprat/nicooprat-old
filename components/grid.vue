@@ -10,6 +10,10 @@
   export default {
 
     mounted() {
+      // http://browserhacks.com/#hack-462504c4ab517b400419d1b3d73d943a
+      const isSafari = !!navigator.userAgent.match(/safari/i) && !navigator.userAgent.match(/chrome/i) && typeof document.body.style.webkitFilter !== "undefined" && !window.chrome
+      if(isSafari) return
+      // Add hover effect, not on f*cking Safari
       this.$children.forEach(child => {
         VanillaTilt.init(child.$el, {
           max: 10,
@@ -32,6 +36,17 @@
 
     > * {
       position: relative;
+      transform-style: preserve-3d;
+
+      // Fallback on Safari
+      &:not([style]) {
+        transition: transform 200ms;
+
+        &:hover,
+        &:focus {
+          transform: translateY(-5px);
+        }
+      }
 
       &:hover,
       &:focus {

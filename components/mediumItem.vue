@@ -61,7 +61,6 @@
     text-decoration: none;
     color: inherit;
     border-bottom: none;
-    transform-style: preserve-3d;
 
     &:hover span,
     &:focus span {
