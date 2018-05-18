@@ -88,21 +88,21 @@
       this.scaleY = 1
       this.showCurves = true
       const duration = 800
-      const delay = 0
+      const delay = 250
       const fps = 120
 
       anime.timeline({delay})
       .add({
         targets: '.loader',
         opacity: 0,
-        duration: duration/3
+        duration: delay
       })
       .add({
         targets: 'main',
         translateY: ['100vh', '0vh'],
         translateZ: 0,
         elasticity: 200,
-        offset: 0,
+        offset: delay,
         duration
       })
       .add({
@@ -110,7 +110,7 @@
         scaleY: 0,
         elasticity: 500,
         duration: duration * 1.5,
-        offset: duration/4,
+        offset: delay + duration/4,
         complete: (anim) => animate(this.updateCurve, fps)
       })
       .add({
@@ -120,7 +120,7 @@
         opacity: 1,
         elasticity: 400,
         duration: duration,
-        offset: duration/3,
+        offset: delay + duration/3,
       })
     },
 
