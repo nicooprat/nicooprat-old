@@ -147,14 +147,14 @@
     async asyncData({params, error}) {
       const ttl = 86400
 
-      const medium = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/4jqjYdusZaPwu9bW7/lastExec/results?token=SJpxzSMzhGXDC8nJYND48RWNu', {ttl})
-      const codepen = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/gDEqWbPh4p97ukpEH/lastExec/results?token=oAHr2Bn6Hf73u7b2H2HjgWfct', {ttl})
-      const twitter = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/zGiqmuLEFgDLC8diQ/lastExec/results?token=TdPModM6r6EyB4BG89wcsXqww', {ttl})
-      const meetupUpcoming = await cachios.get('https://api.meetup.com/self/events?scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=upcoming&fields=group&sig=67fd9ec1b81b7a6027f7332221810b77e262ec20', {ttl})
-      const meetupPast = await cachios.get('https://api.meetup.com/self/events?desc=true&scroll=future_or_past&photo-host=public&page=6&sig_id=144086432&status=past&fields=group&sig=23e9ab019654e79ba238dc9e3a32de09cc4bac47', {ttl})
-      const dribbble = await cachios.get('https://api.dribbble.com/v2/user/shots?access_token=adf54688450e377e645e62c86e051ad245d211d71803266d099c54d4594a2234', {ttl})
-      const github = await cachios.get('https://api.apify.com/v1/KJmGFZ2mADwTHyKpp/crawlers/iMsuiLC6pCB3QFg6r/lastExec/results?token=Fo9YSdwmYwkY5e69ATkmpotJy', {ttl})
-      const calendar = await cachios.get('https://p59-calendars.icloud.com/published/2/gdFv46MDKOWq_7KQklX9VYNvGShbqD8yrSf0q-DqWV0_vJjFe7rnr-pXARuixyzzGKITVuBaXLyiY2vcbZKNeuRqFTIEaR8Be3meAJ-8P4M', {ttl})
+      const medium = await cachios.get(process.env.datas.medium, {ttl})
+      const codepen = await cachios.get(process.env.datas.codepen, {ttl})
+      const twitter = await cachios.get(process.env.datas.twitter, {ttl})
+      const meetupUpcoming = await cachios.get(process.env.datas.meetupUpcoming, {ttl})
+      const meetupPast = await cachios.get(process.env.datas.meetupPast, {ttl})
+      const dribbble = await cachios.get(process.env.datas.dribbble, {ttl})
+      const github = await cachios.get(process.env.datas.github, {ttl})
+      const calendar = await cachios.get(process.env.datas.calendar, {ttl})
 
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519

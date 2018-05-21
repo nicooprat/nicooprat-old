@@ -1,4 +1,7 @@
+const env = require('./settings.js')
+
 module.exports = {
+  env,
   /*
   ** Headers of the page
   */
