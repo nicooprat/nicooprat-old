@@ -147,14 +147,14 @@
     async asyncData({params, error}) {
       const ttl = 86400
 
-      const medium = await cachios.get(process.env.datas.medium, {ttl})
-      const codepen = await cachios.get(process.env.datas.codepen, {ttl})
-      const twitter = await cachios.get(process.env.datas.twitter, {ttl})
-      const meetupUpcoming = await cachios.get(process.env.datas.meetupUpcoming, {ttl})
-      const meetupPast = await cachios.get(process.env.datas.meetupPast, {ttl})
-      const dribbble = await cachios.get(process.env.datas.dribbble, {ttl})
-      const github = await cachios.get(process.env.datas.github, {ttl})
-      const calendar = await cachios.get(process.env.datas.calendar, {ttl})
+      const medium = await cachios.get(process.env.medium, {ttl})
+      const codepen = await cachios.get(process.env.codepen, {ttl})
+      const twitter = await cachios.get(process.env.twitter, {ttl})
+      const meetupUpcoming = await cachios.get(process.env.meetupUpcoming, {ttl})
+      const meetupPast = await cachios.get(process.env.meetupPast, {ttl})
+      const dribbble = await cachios.get(process.env.dribbble, {ttl})
+      const github = await cachios.get(process.env.github, {ttl})
+      const calendar = await cachios.get(process.env.calendar, {ttl})
 
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519

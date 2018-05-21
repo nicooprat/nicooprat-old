@@ -1,7 +1,6 @@
-const env = require('./settings.js')
+require('dotenv').config()
 
 module.exports = {
-  env,
   /*
   ** Headers of the page
   */
