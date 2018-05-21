@@ -25,7 +25,8 @@
     "normalize.css": "^8.0.0",
     "nuxt": "^1.0.0",
     "v-calendar": "^0.9.7",
-    "vanilla-tilt": "^1.4.1"
+    "vanilla-tilt": "^1.4.1",
+    "vue-simple-calendar": "^3.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

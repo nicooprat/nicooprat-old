@@ -1,5 +1,5 @@
 <template>
-  <section class="section container">
+  <section class="section">
     <form name="contact" method="POST" netlify>
       <p>
         <label for="name">Nom</label>
@@ -18,15 +18,48 @@
         <button type="submit">Envoyer</button>
       </p>
     </form>
+
+    <calendar-view
+      :events="events"
+      :displayPeriodCount=3
+      :startingDayOfWeek=1
+      displayPeriodUom="month"
+      :disablePast=true>
+      <span
+        v-if="getMonth(day)"
+        slot="dayContent"
+        slot-scope="{day}"
+        class="cv-month-header">
+        {{getMonth(day)}}
+      </span>
+      <div slot="header"/>
+      <div slot="dayHeader" slot-scope="noop"/>
+    </calendar-view>
   </section>
 </template>
 
 <script>
   import autosize from 'autosize'
+  import CalendarView from '~/node_modules/vue-simple-calendar/src/CalendarView'
 
   export default {
+    components: {
+      CalendarView
+    },
+
+    props: {
+      events: Array
+    },
+
     mounted() {
       autosize(this.$el.querySelectorAll('textarea'))
+    },
+
+    methods: {
+      getMonth(day) {
+        const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc']
+        return day.getDate() === 1 ? months[parseInt(day.getMonth())] : false
+      }
     }
   }
 </script>
@@ -35,18 +68,28 @@
   @import "~/assets/common.scss";
 
   section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: auto;
     box-shadow: 0 200px 0 0 white; // Avoid blue background on scroll overflow
   }
 
   form {
+    min-width: 20em;
     max-width: 30em;
     margin-left: auto;
     margin-right: auto;
+    margin: spacer();
   }
 
   p {
     margin-top: spacer();
     margin-bottom: spacer();
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   label {
@@ -62,20 +105,20 @@
     display: block;
     width: 100%;
     border: none;
-    background-color: rgba($color,.05);
+    background-color: rgba($link,.05);
     padding: .5em;
     font: inherit;
 
     &:hover,
     &:focus {
-      background-color: rgba($color,.1);
+      background-color: rgba($link,.1);
     }
   }
 
   button {
     display: inline-block;
     appareance: none;
-    background-color: $color;
+    background-color: $link;
     color: white;
     text-transform: uppercase;
     letter-spacing: .05em;
@@ -95,7 +138,7 @@
     &:after {
       content: '';
       position: absolute;
-      background-color: $color;
+      background-color: $link;
       z-index: -1;
       transition: all 400ms cubic-bezier(0.175, 0.885, 0.355, 1.640);
     }
@@ -145,6 +188,91 @@
     &:active {
       transition-duration: 100ms;
       transform: scale(1);
+    }
+  }
+</style>
+
+<style lang="scss">
+  @import "~/assets/common.scss";
+
+  .cv-wrapper {
+    min-width: 34em;
+    max-width: 50em;
+    margin: spacer();
+
+    .cv-week {
+      min-height: 3.4em;
+    }
+
+    .cv-day, .cv-weeks {
+      border-color: mix(white,$color,90);
+    }
+
+    .today {
+
+      .cv-day-number {
+        color: white;
+        position: relative;
+        font-weight: bold;
+
+        &:before {
+          content: '';
+          width: 1.8em; height: 1.8em;
+          position: absolute;
+          top: 50%; left: 50%;
+          z-index: -1;
+          border-radius: 999px;
+          background-color: $color;
+          transform: translate(-51%,-51%);
+          margin-right: 0;
+        }
+      }
+    }
+
+    .cv-month-header {
+      font-weight: bold;
+      margin-left: auto;
+      color: rgba($color,0.5);
+      padding: .5em;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: -1;
+        background-color: mix(white,$color,90);
+      }
+    }
+
+    .cv-day-number {
+      color: mix(white,$color,50);
+      position: static;
+      margin-bottom: auto;
+      font-size: .8em;
+      padding: .7em;
+    }
+
+    // Week-ends
+    .dow6,
+    .dow0 {
+
+      .cv-day-number {
+        opacity: .5;
+      }
+    }
+
+    .cv-event {
+      border: none;
+      margin-top: auto;
+      top: auto !important;
+      bottom: 0;
+      overflow: hidden;
+      text-indent: -999px;
+      background: repeating-linear-gradient(-45deg, rgba(white,.2), rgba(white,.2) .5em, transparent .5em, transparent 1em) repeat $link;
+      color: white;
+      font-size: .9em;
+      font-weight: bold;
+      padding: .25em .5em;
     }
   }
 </style>
