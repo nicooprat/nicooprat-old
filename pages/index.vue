@@ -147,7 +147,7 @@
     },
 
     async asyncData({params, error}) {
-      const ttl = 86400
+      const ttl = process.env.NODE_ENV === 'production' ? 0 : 86400
 
       const medium = await cachios.get(process.env.medium, {ttl})
       const codepen = await cachios.get(process.env.codepen, {ttl})
