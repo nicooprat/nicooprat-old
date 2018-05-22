@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section container">
     <form name="contact" method="POST" netlify>
       <h3>Disponible pour discuter de vos projets. </h3>
 
@@ -78,25 +78,12 @@
 
   section {
     box-shadow: 0 200px 0 0 white; // Avoid blue background on scroll overflow
-
-    @include media('>tablet') {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
   }
 
   form {
-    flex-basis: 40%;
     max-width: 30em;
     margin-left: auto;
     margin-right: auto;
-    margin: spacer();
-
-    @include media('>tablet') {
-      position: sticky;
-      top: 1em;
-    }
 
     > *:first-child {
       margin-top: 0;
@@ -226,14 +213,31 @@
   @import "~/assets/common.scss";
 
   .cv-wrapper {
-    flex-basis: 60%;
     max-width: 50em;
     overflow: auto;
-    margin-left: -1px;
-    margin-right: -1px;
+    margin-left: spacer(-1);
+    margin-right: spacer(-1);
+
+    &:before {
+      content: '';
+      width: 10%;
+      border-bottom: 2px solid;
+      display: block;
+      margin: spacer(5) auto;
+      opacity: .25;
+    }
 
     @include media('>phone') {
-      margin: spacer();
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cv-weeks {
+
+      @include media('<=phone') {
+        margin-left: -1px;
+        margin-right: -1px;
+      }
     }
 
     .cv-week {
