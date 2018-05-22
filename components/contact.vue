@@ -1,22 +1,31 @@
 <template>
   <section class="section">
     <form name="contact" method="POST" netlify>
+      <h3>Disponible pour discuter de vos projets. </h3>
+
       <p>
+        Intégration sans problème <small>(HTML, ES6, SCSS, SVG)</small> beaucoup de front-end <small>(Meteor, Vue, WordPress)</small> un peu de back-end <small>(Symfony, MySQL, MongoDB)</small> de quoi me débrouiller en DevOps <small>(Bash, SSH)</small> et tout le reste <small>(Git, Invision, Slack, Trello/Airtable)</small>.
+      </p>
+
+      <fieldset>
         <label for="name">Nom</label>
         <input type="text" id="name" name="name" required>
-      </p>
-      <p>
+      </fieldset>
+
+      <fieldset>
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
-      </p>
-      <p>
+      </fieldset>
+
+      <fieldset>
         <label for="message">Message</label>
         <textarea name="message" id="message" rows="5" required></textarea>
-      </p>
-      <p>
+      </fieldset>
+
+      <fieldset>
         <input type="hidden" name="form-name" value="contact" />
         <button type="submit">Envoyer</button>
-      </p>
+      </fieldset>
     </form>
 
     <calendar-view
@@ -68,27 +77,48 @@
   @import "~/assets/common.scss";
 
   section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: auto;
     box-shadow: 0 200px 0 0 white; // Avoid blue background on scroll overflow
+
+    @include media('>tablet') {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
   }
 
   form {
-    min-width: 20em;
+    flex-basis: 40%;
     max-width: 30em;
     margin-left: auto;
     margin-right: auto;
     margin: spacer();
+
+    @include media('>tablet') {
+      position: sticky;
+      top: 1em;
+    }
+
+    > *:first-child {
+      margin-top: 0;
+    }
   }
 
   p {
+
+    small {
+      font-size: 1em;
+      opacity: .5;
+    }
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
     margin-top: spacer();
     margin-bottom: spacer();
 
-    &:first-child {
-      margin-top: 0;
+    &:first-of-type {
+      margin-top: spacer(2);
     }
   }
 
@@ -105,13 +135,13 @@
     display: block;
     width: 100%;
     border: none;
-    background-color: rgba($link,.05);
+    background-color: rgba($color,.05);
     padding: .5em;
     font: inherit;
 
     &:hover,
     &:focus {
-      background-color: rgba($link,.1);
+      background-color: rgba($color,.1);
     }
   }
 
@@ -196,9 +226,15 @@
   @import "~/assets/common.scss";
 
   .cv-wrapper {
-    min-width: 34em;
+    flex-basis: 60%;
     max-width: 50em;
-    margin: spacer();
+    overflow: auto;
+    margin-left: -1px;
+    margin-right: -1px;
+
+    @include media('>phone') {
+      margin: spacer();
+    }
 
     .cv-week {
       min-height: 3.4em;
@@ -206,6 +242,13 @@
 
     .cv-day, .cv-weeks {
       border-color: mix(white,$color,90);
+    }
+
+    .cv-day {
+
+      &.d01 .cv-day-number {
+        display: none;
+      }
     }
 
     .today {
@@ -229,11 +272,20 @@
       }
     }
 
+    .cv-month-header,
+    .cv-day-number {
+      padding: .7em;
+      font-size: .8em;
+      line-height: 1em;
+
+      @include media('<=phone') {
+        font-size: .7em;
+      }
+    }
+
     .cv-month-header {
       font-weight: bold;
-      margin-left: auto;
       color: rgba($color,0.5);
-      padding: .5em;
 
       &:before {
         content: '';
@@ -248,13 +300,13 @@
       color: mix(white,$color,50);
       position: static;
       margin-bottom: auto;
-      font-size: .8em;
-      padding: .7em;
     }
 
     // Week-ends
     .dow6,
     .dow0 {
+      background-image: linear-gradient(to right bottom, white 50%, mix(white,$color,80) 50%, white 51%);
+      box-shadow: 0 0 0 .5em white inset;
 
       .cv-day-number {
         opacity: .5;
@@ -266,13 +318,18 @@
       margin-top: auto;
       top: auto !important;
       bottom: 0;
-      overflow: hidden;
-      text-indent: -999px;
       background: repeating-linear-gradient(-45deg, rgba(white,.2), rgba(white,.2) .5em, transparent .5em, transparent 1em) repeat $link;
       color: white;
       font-size: .9em;
       font-weight: bold;
       padding: .25em .5em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @include media('<=phone') {
+        text-indent: -999px;
+      }
     }
   }
 </style>

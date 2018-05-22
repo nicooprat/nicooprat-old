@@ -161,7 +161,7 @@
       const comp = new ical.Component(ical.parse(calendar.data))
       const events = comp.getAllSubcomponents('vevent').map(e => {
         return {
-          title: e.getFirstPropertyValue('summary'),
+          title: 'Indisponible',
           startDate: e.getFirstPropertyValue('dtstart').toJSDate(),
           endDate: e.getFirstPropertyValue('dtend').toJSDate(),
         }
