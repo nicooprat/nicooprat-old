@@ -65,7 +65,7 @@
     }
 
     .cv-day, .cv-weeks {
-      border-color: mix(white,$color,90);
+      border-color: white;
     }
 
     .cv-day {
@@ -84,13 +84,13 @@
 
         &:before {
           content: '';
-          width: 1.8em; height: 1.8em;
+          width: 26px; height: 25px;
           position: absolute;
           top: 50%; left: 50%;
           z-index: -1;
-          border-radius: 999px;
-          background-color: $color;
-          transform: translate(-51%,-51%);
+          border-radius: 100%;
+          background-color: $link;
+          transform: translate(-51%,-52%);
           margin-right: 0;
         }
       }
@@ -133,7 +133,7 @@
       box-shadow: 0 0 0 .5em white inset;
 
       .cv-day-number {
-        opacity: .5;
+        opacity: .35;
       }
     }
 
