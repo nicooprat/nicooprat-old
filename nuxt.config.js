@@ -20,6 +20,7 @@ module.exports = {
       { rel:'manifest', href: '/site.webmanifest' },
       { rel:'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Arvo:400,700|Roboto:400,700,900' },
+      { rel: 'canonical', href: 'https://www.nicooprat.com' },
     ],
   },
   css: [
