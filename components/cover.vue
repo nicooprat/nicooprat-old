@@ -1,6 +1,6 @@
 <template>
   <header class="container section">
-    <img src="https://fr.gravatar.com/userimage/19665931/6bab5fc386a9ec8701f46d143f36851f.jpg?size=200" alt="Nico Prat">
+    <img src="/avatar.jpg" alt="Nico Prat">
     <div>
       <h1 title="Nico Prat"><span>@</span>nico<span>o</span>prat</h1>
       <h2>designer & développeur front-end</h2>
