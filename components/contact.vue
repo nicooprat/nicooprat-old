@@ -4,7 +4,7 @@
       <h3>Disponible pour discuter de vos projets. </h3>
 
       <p>
-        Intégration sans problème <small>(HTML, ES6, SCSS, SVG)</small> beaucoup de front-end <small>(Meteor, Vue, WordPress)</small> un peu de back-end <small>(Symfony, MySQL, MongoDB)</small> de quoi me débrouiller en DevOps <small>(Bash, SSH)</small> et tout le reste <small>(Git, Invision, Slack, Trello/Airtable)</small>.
+        Intégration sans problème <small>(HTML, ES6, SCSS, SVG)</small> beaucoup de front-end <small>(Meteor, Vue, WordPress, Twig & Blade)</small> un peu de back-end <small>(Symfony, MySQL, MongoDB)</small> de quoi me débrouiller en DevOps <small>(Bash, SSH, déploiement continu)</small> et tout le reste <small>(Git, Invision, Slack, Trello/Airtable)</small>.
       </p>
 
       <fieldset>
