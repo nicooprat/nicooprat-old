@@ -49,10 +49,6 @@
     margin-left: auto;
     margin-right: auto;
 
-    @include media('<=phone') {
-      margin: -5vh spacer(-1);
-    }
-
     .cv-weeks {
 
       @include media('<=phone') {
@@ -81,6 +77,7 @@
         color: white;
         position: relative;
         font-weight: bold;
+        opacity: 1 !important;
 
         &:before {
           content: '';
@@ -109,15 +106,7 @@
 
     .cv-month-header {
       font-weight: bold;
-      color: rgba($color,0.5);
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        z-index: -1;
-        background-color: mix(white,$color,90);
-      }
+      color: rgba($color,.8);
     }
 
     .cv-day-number {
@@ -129,7 +118,7 @@
     // Week-ends
     .dow6,
     .dow0 {
-      background-image: linear-gradient(to right bottom, white 50%, mix(white,$color,80) 50%, white 51%);
+      background-image: linear-gradient(to right bottom, white 50%, mix(white,$color,85) 50%, white 51%);
       box-shadow: 0 0 0 .5em white inset;
 
       .cv-day-number {
@@ -138,21 +127,75 @@
     }
 
     .cv-event {
+      height: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: none;
-      margin-top: auto;
       top: auto !important;
       bottom: 0;
-      background: repeating-linear-gradient(-45deg, rgba(white,.2), rgba(white,.2) .5em, transparent .5em, transparent 1em) repeat $link;
-      color: white;
-      font-size: .9em;
+      background: mix(white,$color,93);
+      color: rgba($color,.5);
+      font-size: .7em;
       font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
       padding: .25em .5em;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      border-radius: 999px;
+      line-height: inherit;
+
+      $w: 4px;
+      $h: $w*2;
+
+      &:before,
+      &:after {
+        position: absolute;
+        top: 0; bottom: 0;
+        width: $w;
+        background-size: $w $h, $w $h;
+        background-position: 0 (-$w);
+      }
+
+      &:before {
+        left: 0;
+        background-image: linear-gradient(45deg, white 33.33%, transparent 33.33%),
+                          linear-gradient(135deg, white 33.33%, transparent 33.33%);
+      }
+
+      &:after {
+        right: 0;
+        background-image: linear-gradient(225deg, white 33.33%, transparent 33.33%),
+                          linear-gradient(315deg, white 33.33%, transparent 33.33%);
+      }
+
+      &.toBeContinued {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+
+        &:after {
+          content: '';
+        }
+      }
+
+      &.continued {
+        color: transparent;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+
+        &:before {
+          content: '';
+        }
+      }
+
+      &.toBeContinued.continued {
+        border-radius: 0;
+      }
 
       @include media('<=phone') {
-        text-indent: -999px;
+        text-indent: -200vw;
       }
     }
   }
