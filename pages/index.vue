@@ -75,7 +75,7 @@
 
         scrollY: 0,
         scaleY: 0,
-        slowness: .8,
+        slowness: .75,
         brake: .5,
         showCurves: false
       }
