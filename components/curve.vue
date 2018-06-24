@@ -23,7 +23,7 @@
 
   div {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     width: 100%;
     transform: translate3d(0,-50%,0);
     pointer-events: none;
