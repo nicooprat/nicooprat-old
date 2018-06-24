@@ -24,12 +24,10 @@
   div {
     position: absolute;
     z-index: 2;
-    // 1px margin on Safari
-    width: 102%;
-    margin-left: -1%;
-    margin-right: -1%;
+    width: 100%;
     transform: translate3d(0,-50%,0);
     pointer-events: none;
+    overflow: hidden;
   }
 
   svg {
@@ -37,12 +35,14 @@
   }
 
   .top {
-    transform: scale3d(1, var(--transform-top), 1);
+    // 1.1 = 1px margin on Safari
+    transform: scale3d(1.1, var(--transform-top), 1);
     transform-origin: bottom;
   }
 
   .bottom {
-    transform: scale3d(1, var(--transform-bottom), 1);
+    // 1.1 = 1px margin on Safari
+    transform: scale3d(1.1, var(--transform-bottom), 1);
     transform-origin: top;
     margin-top: -1px; // Fix overlapping
   }
