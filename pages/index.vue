@@ -247,6 +247,8 @@
     padding-top: 10vh;
     padding-bottom: 10vh;
     background-color: var(--sectionColor);
+    position: relative;
+    z-index: 1; // Under curves
 
     @include media('<=phone') {
       padding-top: 5vh;
