@@ -24,7 +24,10 @@
   div {
     position: absolute;
     z-index: 2;
-    width: 100%;
+    // 1px margin on Safari
+    width: 102%;
+    margin-left: -1%;
+    margin-right: -1%;
     transform: translate3d(0,-50%,0);
     pointer-events: none;
   }
