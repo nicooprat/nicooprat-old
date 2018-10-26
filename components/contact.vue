@@ -1,6 +1,6 @@
 <template>
   <section class="section container">
-    <form name="contact" method="POST" netlify>
+    <form name="contact" method="POST" netlify-honeypot="phone" netlify>
       <h3>Disponible pour discuter de vos projets. </h3>
 
       <p>
@@ -23,6 +23,7 @@
       </fieldset>
 
       <fieldset>
+        <input type="text" name="phone" title="À laisser vide" aria-hidden="true">
         <input type="hidden" name="form-name" value="contact" />
         <button type="submit">Envoyer</button>
       </fieldset>
@@ -62,7 +63,7 @@
 
     small {
       font-size: 1em;
-      opacity: .5;
+      opacity: .65;
     }
   }
 
@@ -117,6 +118,7 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
+    filter: drop-shadow(0 0 0 transparent);
     transform: translate3d(0,0,1px) perspective(100px);
     transition: all 300ms cubic-bezier(0.175, 0.885, 0.355, 1.640);
 
@@ -175,5 +177,10 @@
       transition-duration: 100ms;
       transform: scale(1);
     }
+  }
+
+  [name="phone"] {
+    position: absolute;
+    visibility: hidden;
   }
 </style>
