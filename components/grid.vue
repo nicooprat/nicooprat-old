@@ -21,15 +21,11 @@
     > * {
       position: relative;
       transform-style: preserve-3d;
+      transition: transform 200ms;
 
-      // Fallback on Safari
-      &:not([style]) {
-        transition: transform 200ms;
-
-        &:hover,
-        &:focus {
-          transform: translateY(-5px);
-        }
+      &:hover,
+      &:focus {
+        transform: translateY(-5px);
       }
 
       &:hover,
@@ -44,7 +40,7 @@
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
         z-index: -1;
-        margin: spacer(-1);
+        margin: spacer(-.75);
         opacity: 0;
         transition: all 200ms;
       }
@@ -61,7 +57,7 @@
         top: 0; left: 0; right: 0; bottom: 0;
         z-index: -1;
         background-color: rgba(white,.1);
-        margin: spacer(-1);
+        margin: spacer(-.75);
         opacity: 0;
         transition: all 200ms;
       }

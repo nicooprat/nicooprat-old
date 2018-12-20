@@ -3,7 +3,7 @@
     <cover/>
 
     <main>
-      <curve v-if="showCurves" top="#4c91dd" bottom="white"/>
+      <curve v-if="showCurves" top="#5297ff" bottom="white"/>
       <intro/>
       <curve v-if="showCurves" top="white" bottom="#f5f6f7"/>
       <medium :articles="medium"/>
