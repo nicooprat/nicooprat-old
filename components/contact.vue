@@ -182,5 +182,6 @@
   [name="phone"] {
     position: absolute;
     visibility: hidden;
+    width: 0;
   }
 </style>
