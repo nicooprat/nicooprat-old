@@ -26,7 +26,7 @@
     }
   }
 
-  p:first-of-type strong:first-of-type:before {
+  p:first-of-type strong:nth-of-type(2):before {
     content: 'animateur radio sur Le Mouv’';
     text-decoration: line-through;
     opacity: .25;
