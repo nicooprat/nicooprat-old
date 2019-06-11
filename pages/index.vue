@@ -153,14 +153,14 @@
     async asyncData({params, error}) {
       const ttl = process.env.NODE_ENV === 'production' ? 0 : 86400
 
-      const medium = await cachios.get(process.env.medium, {ttl})
-      const codepen = await cachios.get(process.env.codepen, {ttl})
-      const twitter = await cachios.get(process.env.twitter, {ttl})
-      const meetupUpcoming = await cachios.get(process.env.meetupUpcoming, {ttl})
-      const meetupPast = await cachios.get(process.env.meetupPast, {ttl})
-      const dribbble = await cachios.get(process.env.dribbble, {ttl})
-      const github = await cachios.get(process.env.github, {ttl})
-      const calendar = await cachios.get(process.env.calendar, {ttl})
+      const {data: medium} = await cachios.get(process.env.medium, {ttl})
+      const {data: codepen} = await cachios.get(process.env.codepen, {ttl})
+      const {data: twitter} = await cachios.get(process.env.twitter, {ttl})
+      const {data: meetupUpcoming} = await cachios.get(process.env.meetupUpcoming, {ttl})
+      const {data: meetupPast} = await cachios.get(process.env.meetupPast, {ttl})
+      const {data: dribbble} = await cachios.get(process.env.dribbble, {ttl})
+      const {data: github} = await cachios.get(process.env.github, {ttl})
+      const {data: calendar} = await cachios.get(process.env.calendar, {ttl})
 
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519
@@ -176,12 +176,12 @@
       })
 
       return {
-        medium: medium.data && medium.data[0].pageFunctionResult.slice(0,6),
-        codepen: codepen.data && codepen.data[0].pageFunctionResult.slice(0,6),
-        twitter: twitter.data && twitter.data[0].pageFunctionResult.slice(0,6),
-        meetup: [...meetupUpcoming.data, ...meetupPast.data].slice(0,6),
-        dribbble: dribbble.data && dribbble.data.slice(0,6),
-        github: github.data && github.data[0].pageFunctionResult.slice(0,6),
+        medium: medium && medium[0].pageFunctionResult && medium[0].pageFunctionResult.slice(0,6),
+        codepen: codepen && codepen[0].pageFunctionResult && codepen[0].pageFunctionResult.slice(0,6),
+        twitter: twitter && twitter[0].pageFunctionResult && twitter[0].pageFunctionResult.slice(0,6),
+        meetup: [...meetupUpcoming, ...meetupPast].slice(0,6),
+        dribbble: dribbble && dribbble.slice(0,6),
+        github: github && github[0].pageFunctionResult && github[0].pageFunctionResult.slice(0,6),
         events,
       }
     },
