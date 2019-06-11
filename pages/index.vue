@@ -166,7 +166,7 @@
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519
       // According to calendar expected format
       // https://github.com/richardtallent/vue-simple-calendar#calendar-event-properties
-      const comp = new ical.Component(ical.parse(calendar.data))
+      const comp = new ical.Component(ical.parse(calendar))
       const events = comp.getAllSubcomponents('vevent').map(e => {
         return {
           title: 'Indisponible',
@@ -176,12 +176,12 @@
       })
 
       return {
-        medium: medium && medium[0].pageFunctionResult && medium[0].pageFunctionResult.slice(0,6),
-        codepen: codepen && codepen[0].pageFunctionResult && codepen[0].pageFunctionResult.slice(0,6),
-        twitter: twitter && twitter[0].pageFunctionResult && twitter[0].pageFunctionResult.slice(0,6),
-        meetup: [...meetupUpcoming, ...meetupPast].slice(0,6),
-        dribbble: dribbble && dribbble.slice(0,6),
-        github: github && github[0].pageFunctionResult && github[0].pageFunctionResult.slice(0,6),
+        medium: medium && medium[0].pageFunctionResult && medium[0].pageFunctionResult.slice(0,6) || [],
+        codepen: codepen && codepen[0].pageFunctionResult && codepen[0].pageFunctionResult.slice(0,6) || [],
+        twitter: twitter && twitter[0].pageFunctionResult && twitter[0].pageFunctionResult.slice(0,6) || [],
+        meetup: [...meetupUpcoming, ...meetupPast].slice(0,6) || [],
+        dribbble: dribbble && dribbble.slice(0,6) || [],
+        github: github && github[0].pageFunctionResult && github[0].pageFunctionResult.slice(0,6) || [],
         events,
       }
     },
