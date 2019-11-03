@@ -5,18 +5,18 @@
     <main>
       <curve v-if="showCurves" top="#5297ff" bottom="white"/>
       <intro/>
-      <curve v-if="showCurves && medium.length" top="white" bottom="#f5f6f7"/>
-      <medium v-if="medium.length" :articles="medium"/>
-      <curve v-if="showCurves && meetup.length" top="#f5f6f7" bottom="#f44362"/>
-      <meetup v-if="meetup.length" :events="meetup"/>
-      <curve v-if="showCurves && codepen.length" top="#f44362" bottom="#343338"/>
-      <codepen v-if="codepen.length" :pens="codepen"/>
-      <curve v-if="showCurves && twitter.length" top="#343338" bottom="#2aa3ef"/>
-      <twitter v-if="twitter.length" :tweets="twitter"/>
-      <curve v-if="showCurves && github.length" top="#2aa3ef" bottom="#25292e"/>
-      <github v-if="github.length" :repos="github"/>
-      <curve v-if="showCurves && dribbble.length" top="#25292e" bottom="#ea4c89"/>
-      <dribbble v-if="dribbble.length" :shots="dribbble"/>
+      <curve v-if="showCurves && medium" top="white" bottom="#f5f6f7"/>
+      <medium v-if="medium" :articles="medium"/>
+      <curve v-if="showCurves && meetup" top="#f5f6f7" bottom="#f44362"/>
+      <meetup v-if="meetup" :events="meetup"/>
+      <curve v-if="showCurves && codepen" top="#f44362" bottom="#343338"/>
+      <codepen v-if="codepen" :pens="codepen"/>
+      <curve v-if="showCurves && twitter" top="#343338" bottom="#2aa3ef"/>
+      <twitter v-if="twitter" :tweets="twitter"/>
+      <curve v-if="showCurves && github" top="#2aa3ef" bottom="#25292e"/>
+      <github v-if="github" :repos="github"/>
+      <curve v-if="showCurves && dribbble" top="#25292e" bottom="#ea4c89"/>
+      <dribbble v-if="dribbble" :shots="dribbble"/>
       <curve v-if="showCurves" top="#ea4c89" bottom="white"/>
       <calendar :events="events"/>
       <curve v-if="showCurves" top="white" bottom="#4c91dd"/>
@@ -54,7 +54,6 @@
       intro,
       medium,
       codepen,
-      twitter,
       twitter,
       meetup,
       dribbble,
@@ -176,10 +175,10 @@
       })
 
       return {
-        medium: (medium || []).slice(0,6),
-        twitter: (twitter || []).slice(0,6),
-        github: (github || []).slice(0,6),
-        codepen: (codepen || []).slice(0,6),
+        medium: medium ? medium.slice(0,6) : null,
+        twitter: twitter ? twitter.slice(0,6) : null,
+        github: github ? github.slice(0,6) : null,
+        codepen: codepen ? codepen.slice(0,6) : null,
         meetup: [...meetupUpcoming, ...meetupPast].slice(0,6) || [],
         dribbble: dribbble && dribbble.slice(0,6) || [],
         events,
