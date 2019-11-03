@@ -5,18 +5,18 @@
     <main>
       <curve v-if="showCurves" top="#5297ff" bottom="white"/>
       <intro/>
-      <curve v-if="showCurves" top="white" bottom="#f5f6f7"/>
-      <medium :articles="medium"/>
-      <curve v-if="showCurves" top="#f5f6f7" bottom="#f44362"/>
-      <meetup :events="meetup"/>
-      <curve v-if="showCurves" top="#f44362" bottom="#343338"/>
-      <codepen :pens="codepen"/>
-      <curve v-if="showCurves" top="#343338" bottom="#2aa3ef"/>
-      <twitter :tweets="twitter"/>
-      <curve v-if="showCurves" top="#2aa3ef" bottom="#25292e"/>
-      <github :repos="github"/>
-      <curve v-if="showCurves" top="#25292e" bottom="#ea4c89"/>
-      <dribbble :shots="dribbble"/>
+      <curve v-if="showCurves && medium.length" top="white" bottom="#f5f6f7"/>
+      <medium v-if="medium.length" :articles="medium"/>
+      <curve v-if="showCurves && meetup.length" top="#f5f6f7" bottom="#f44362"/>
+      <meetup v-if="meetup.length" :events="meetup"/>
+      <curve v-if="showCurves && codepen.length" top="#f44362" bottom="#343338"/>
+      <codepen v-if="codepen.length" :pens="codepen"/>
+      <curve v-if="showCurves && twitter.length" top="#343338" bottom="#2aa3ef"/>
+      <twitter v-if="twitter.length" :tweets="twitter"/>
+      <curve v-if="showCurves && github.length" top="#2aa3ef" bottom="#25292e"/>
+      <github v-if="github.length" :repos="github"/>
+      <curve v-if="showCurves && dribbble.length" top="#25292e" bottom="#ea4c89"/>
+      <dribbble v-if="dribbble.length" :shots="dribbble"/>
       <curve v-if="showCurves" top="#ea4c89" bottom="white"/>
       <calendar :events="events"/>
       <curve v-if="showCurves" top="white" bottom="#4c91dd"/>
@@ -162,6 +162,8 @@
       const {data: github} = await cachios.get(process.env.github, {ttl})
       const {data: calendar} = await cachios.get(process.env.calendar, {ttl})
 
+      console.log(github)
+
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519
       // According to calendar expected format
@@ -176,12 +178,12 @@
       })
 
       return {
-        medium: medium && medium[0].pageFunctionResult && medium[0].pageFunctionResult.slice(0,6) || [],
-        codepen: codepen && codepen[0].pageFunctionResult && codepen[0].pageFunctionResult.slice(0,6) || [],
-        twitter: twitter && twitter[0].pageFunctionResult && twitter[0].pageFunctionResult.slice(0,6) || [],
+        medium: (medium || []).slice(0,6),
+        twitter: (twitter || []).slice(0,6),
+        github: (github || []).slice(0,6),
+        codepen: (codepen || []).slice(0,6),
         meetup: [...meetupUpcoming, ...meetupPast].slice(0,6) || [],
         dribbble: dribbble && dribbble.slice(0,6) || [],
-        github: github && github[0].pageFunctionResult && github[0].pageFunctionResult.slice(0,6) || [],
         events,
       }
     },
