@@ -162,8 +162,6 @@
       const {data: github} = await cachios.get(process.env.github, {ttl})
       const {data: calendar} = await cachios.get(process.env.calendar, {ttl})
 
-      console.log(github)
-
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519
       // According to calendar expected format
