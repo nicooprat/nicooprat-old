@@ -11,7 +11,7 @@
       <meetup v-if="meetup" :events="meetup"/>
       <curve v-if="showCurves && codepen" top="#f44362" bottom="#343338"/>
       <codepen v-if="codepen" :pens="codepen"/>
-      <curve v-if="showCurves && twitter" top="#343338" bottom="#2aa3ef"/>
+      <curve v-if="showCurves && twitter" top="#f44362" bottom="#2aa3ef"/>
       <twitter v-if="twitter" :tweets="twitter"/>
       <curve v-if="showCurves && github" top="#2aa3ef" bottom="#25292e"/>
       <github v-if="github" :repos="github"/>
