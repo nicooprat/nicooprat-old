@@ -147,14 +147,24 @@
     async asyncData({params, error}) {
       const ttl = process.env.NODE_ENV === 'production' ? 0 : 86400
 
-      const {data: medium} = await cachios.get(process.env.medium, {ttl})
-      // https://gist.github.com/brandur/5845931
-      const {data: twitter} = await cachios.get(process.env.twitter, {ttl, headers: { Authorization: `Bearer ${process.env.twitter_bearer}` } })
-      const {data: meetupUpcoming} = await cachios.get(process.env.meetupUpcoming, {ttl})
-      const {data: meetupPast} = await cachios.get(process.env.meetupPast, {ttl})
-      const {data: dribbble} = await cachios.get(process.env.dribbble, {ttl})
-      const {data: github} = await cachios.get(process.env.github, {ttl})
-      const {data: calendar} = await cachios.get(process.env.calendar, {ttl})
+      const [
+        {data: medium},
+        {data: twitter},
+        {data: meetupUpcoming},
+        {data: meetupPast},
+        {data: dribbble},
+        {data: github},
+        {data: calendar},
+      ] = await Promise.all([
+        cachios.get(process.env.medium, {ttl}),
+        // https://gist.github.com/brandur/5845931
+        cachios.get(process.env.twitter, {ttl, headers: { Authorization: `Bearer ${process.env.twitter_bearer}` } }),
+        cachios.get(process.env.meetupUpcoming, {ttl}),
+        cachios.get(process.env.meetupPast, {ttl}),
+        cachios.get(process.env.dribbble, {ttl}),
+        cachios.get(process.env.github, {ttl}),
+        cachios.get(process.env.calendar, {ttl}),
+      ])
 
       // Parse events from ICS to JSON
       // https://github.com/mozilla-comm/ical.js/issues/222#issuecomment-204083519
