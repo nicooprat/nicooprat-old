@@ -6,7 +6,7 @@
 
     <p>Je m’appelle <strong>Nico Prat</strong> et suis <strong>designer & développeur front-end à Lyon</strong>. Je conçois et donne vie à des <strong>applications</strong> et <strong>sites internet</strong> et suis passionné par <strong>l’expérience utilisateur</strong>, le <strong>webdesign</strong> et le <strong>code</strong> : en gros, le web !</p>
 
-    <p>J’ai travaillé pendant 5 ans à l'agence web Grenobloise <a href="http://www.mezcalito.fr/">Mezcalito</a>, avec des clients tels que Sport 2000, Go Sport, Intersport, Serre Chevalier, et bien d’autres. De retour à Lyon, je travaille maintenant pour des <a href="https://www.pamplemousse.com/">agences</a>, des <a href="https://www.helloshop.io/">startups</a> et des <a href="https://www.blendwebmix.com">associations</a> en tant qu'<strong>indépendant</strong>, ainsi que sur des projets personnels comme...</p>
+    <p>J’ai travaillé pendant 5 ans à l'agence web Grenobloise <a href="http://www.mezcalito.fr/">Mezcalito</a>, avec des clients tels que Sport 2000, Go Sport, Intersport, Serre Chevalier, et bien d’autres. De retour à Lyon, je travaille maintenant pour des <a href="https://www.pamplemousse.com/">agences</a>, des <a href="https://www.365talents.com/">startups</a> et des <a href="https://www.blendwebmix.com">associations</a> en tant qu'<strong>indépendant</strong>, ainsi que sur des projets personnels comme...</p>
 
     <grid v-if="projects">
       <project-item v-for="project in projects" v-bind="project" :key="project.title"/>
