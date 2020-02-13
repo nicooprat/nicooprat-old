@@ -9,8 +9,8 @@
       <medium v-if="medium" :articles="medium"/>
       <curve v-if="showCurves && meetup" top="#f5f6f7" bottom="#f44362"/>
       <meetup v-if="meetup" :events="meetup"/>
-      <curve v-if="showCurves && codepen" top="#f44362" bottom="#343338"/>
-      <codepen v-if="codepen" :pens="codepen"/>
+      <!-- <curve v-if="showCurves && codepen" top="#f44362" bottom="#343338"/> -->
+      <!-- <codepen v-if="codepen" :pens="codepen"/> -->
       <curve v-if="showCurves && twitter" top="#f44362" bottom="#2aa3ef"/>
       <twitter v-if="twitter" :tweets="twitter"/>
       <curve v-if="showCurves && github" top="#2aa3ef" bottom="#25292e"/>
@@ -38,7 +38,7 @@
   import cover from '~/components/cover.vue'
   import intro from '~/components/intro.vue'
   import medium from '~/components/medium.vue'
-  import codepen from '~/components/codepen.vue'
+  // import codepen from '~/components/codepen.vue'
   import twitter from '~/components/twitter.vue'
   import meetup from '~/components/meetup.vue'
   import dribbble from '~/components/dribbble.vue'
@@ -53,7 +53,7 @@
       cover,
       intro,
       medium,
-      codepen,
+      // codepen,
       twitter,
       meetup,
       dribbble,
@@ -66,7 +66,7 @@
     data() {
       return {
         medium: [],
-        codepen: [],
+        // codepen: [],
         twitter: [],
         meetup: [],
         dribbble: [],
@@ -153,8 +153,9 @@
       const ttl = process.env.NODE_ENV === 'production' ? 0 : 86400
 
       const {data: medium} = await cachios.get(process.env.medium, {ttl})
-      const {data: codepen} = await cachios.get(process.env.codepen, {ttl})
-      const {data: twitter} = await cachios.get(process.env.twitter, {ttl})
+      // const {data: codepen} = await cachios.get(process.env.codepen, {ttl})
+      // https://gist.github.com/brandur/5845931
+      const {data: twitter} = await cachios.get(process.env.twitter, {ttl, headers: { Authorization: `Bearer ${process.env.twitter_bearer}` } })
       const {data: meetupUpcoming} = await cachios.get(process.env.meetupUpcoming, {ttl})
       const {data: meetupPast} = await cachios.get(process.env.meetupPast, {ttl})
       const {data: dribbble} = await cachios.get(process.env.dribbble, {ttl})
@@ -178,7 +179,7 @@
         medium: medium ? medium.slice(0,6) : null,
         twitter: twitter ? twitter.slice(0,6) : null,
         github: github ? github.slice(0,6) : null,
-        codepen: codepen ? codepen.slice(0,6) : null,
+        // codepen: codepen ? codepen.slice(0,6) : null,
         meetup: [...meetupUpcoming, ...meetupPast].slice(0,6) || [],
         dribbble: dribbble && dribbble.slice(0,6) || [],
         events,
@@ -230,7 +231,8 @@
     }
   }
 
-  img {
+  img,
+  video {
     max-width: 100%;
     height: auto;
   }

@@ -25,6 +25,7 @@
 
       &:hover,
       &:focus {
+        outline: none;
         transform: translateY(-5px);
       }
 
