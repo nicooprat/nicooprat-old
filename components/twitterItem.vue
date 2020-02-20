@@ -11,7 +11,7 @@
     </p>
     <p :lang="tweet.lang" dir="ltr" v-text="tweet.text" />
     <p v-for="(medias, type) in tweet.extended_entities" :key="type" class="medias">
-      <img v-for="media in medias" v-if="media.type === 'photo'" :key="media.id" :src="media.media_url" />
+      <img v-for="media in medias" v-if="media.type === 'photo'" :key="media.id" :src="media.media_url_https" />
       <video v-for="media in medias.slice(0,2)" v-if="media.type === 'animated_gif'" :key="media.id" :poster="media.media_url_https" autoplay muted loop>
         <source v-for="(variant, i) in media.video_info.variants" :key="i" :src="variant.url" :type="variant.content_type" />
       </video>
