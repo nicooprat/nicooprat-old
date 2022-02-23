@@ -68,7 +68,7 @@
           title: 'Diaporama',
           desc: 'Webapp de scrolly-telling de vidéos Youtube grâce aux sous-titres, basée sur Nuxt et Netlify (+ lambdas).',
           logo: 'diaporama',
-          link: 'https://www.diaporama.app',
+          link: 'https://diaporama.netlify.app/',
           color: '#f91628',
         }]
       }
